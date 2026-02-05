@@ -60,15 +60,97 @@ button {
   cursor: pointer;
   background: #fff;
 }
-
 button:hover {
   background: #f0f8ff;
 }
-
 .status {
   margin-top: 10px;
   color: var(--muted);
   font-size: 13px;
+}
+.deck-list {
+  margin-top: 12px;
+  text-align: left;
+}
+.deck-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.deck-item:hover {
+  background: #f9f9f9;
+}
+.deck-info strong {
+  display: block;
+  color: var(--accent);
+}
+.deck-info {
+  flex: 1;
+  text-align: left;
+}
+.deck-controls {
+  display: flex;
+  gap: 4px;
+}
+.small-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.small-btn:hover {
+  background: #f0f8ff;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  width: 100%;
+}
+.modal-content h2 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 18px;
+}
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.modal-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.modal-controls button {
+  padding: 8px 12px;
 }
 @media (max-width: 420px) {
   .card {

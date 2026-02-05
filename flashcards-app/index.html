@@ -3,31 +3,82 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Simple Flash Cards</title>
+  <title>Flashcards — Single Page</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <main class="container">
+  <header class="top">
     <h1>Flash Cards</h1>
-    <section class="card-area">
-      <div id="card" class="card">
-        <div id="face" class="face">No cards — add one</div>
+    <nav>
+      <button id="viewCards" aria-label="View cards">Cards</button>
+      <button id="viewDecks" aria-label="View decks">Decks</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- CARDS VIEW -->
+    <section id="cardsView" class="view">
+      <div class="card-area" aria-live="polite">
+        <div id="card" class="card" role="article">
+          <div id="face" class="face">No cards — add one</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prev" aria-label="Previous card">Prev</button>
+        <button id="flip" aria-label="Flip card">Flip</button>
+        <button id="next" aria-label="Next card">Next</button>
+        <button id="add" aria-label="Add card">Add</button>
+        <button id="delete" aria-label="Delete current card">Delete</button>
+        <button id="saveToDeck" aria-label="Save current card to a deck">Save to Deck</button>
+        <button id="export" aria-label="Export cards">Export</button>
+        <input id="importFile" type="file" accept="application/json" aria-label="Import file" hidden>
+        <button id="import" aria-label="Import cards">Import</button>
+      </div>
+
+      <div id="status" class="status" aria-live="polite">0 / 0</div>
+    </section>
+
+    <!-- DECKS VIEW -->
+    <section id="decksView" class="view hidden" aria-hidden="true">
+      <div class="controls">
+        <button id="newDeck" aria-label="Create new deck">New Deck</button>
+        <button id="backToCards" aria-label="Back to cards">Back</button>
+      </div>
+      <div id="deckList" class="deck-list" aria-live="polite"></div>
+
+      <div id="deckModal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+          <h2>Create Deck</h2>
+          <input id="deckName" type="text" placeholder="Deck name" aria-label="Deck name">
+          <div class="modal-controls">
+            <button id="createDeck" aria-label="Create deck">Create</button>
+            <button id="cancelDeck" aria-label="Cancel">Cancel</button>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="controls">
-      <button id="prev">Prev</button>
-      <button id="flip">Flip</button>
-      <button id="next">Next</button>
-      <button id="add">Add</button>
-      <button id="delete">Delete</button>
-      <button id="export">Export</button>
-      <input id="importFile" type="file" accept="application/json" style="display:none">
-      <button id="import">Import</button>
-    </div>
+    <!-- DECK STUDY VIEW -->
+    <section id="deckStudyView" class="view hidden" aria-hidden="true">
+      <h2 id="deckTitle">Deck</h2>
+      <div class="card-area" aria-live="polite">
+        <div id="deckCard" class="card" role="article">
+          <div id="deckFace" class="face">Loading...</div>
+        </div>
+      </div>
 
-    <div id="status" class="status">0 / 0</div>
+      <div class="controls">
+        <button id="dPrev" aria-label="Previous card in deck">Prev</button>
+        <button id="dFlip" aria-label="Flip card in deck">Flip</button>
+        <button id="dNext" aria-label="Next card in deck">Next</button>
+        <button id="dDelete" aria-label="Delete card from deck">Delete from Deck</button>
+        <button id="dBack" aria-label="Back to decks">Back</button>
+      </div>
+
+      <div id="dStatus" class="status" aria-live="polite">0 / 0</div>
+    </section>
   </main>
 </body>
 </html>
