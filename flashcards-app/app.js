@@ -1,4 +1,3 @@
-// ...existing code...
 const LS = 'simple_flashcards_v1';
 let cards = load();
 let i = 0;
@@ -10,6 +9,7 @@ const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const flipBtn = document.getElementById('flip');
 const addBtn = document.getElementById('add');
+const deleteBtn = document.getElementById('delete');
 const statusEl = document.getElementById('status');
 const exportBtn = document.getElementById('export');
 const importBtn = document.getElementById('import');
@@ -43,6 +43,20 @@ addBtn.addEventListener('click', () => {
   const back = prompt('Back (answer):') || '';
   cards.push({ id: uid(), front, back });
   i = cards.length - 1;
+  save();
+  showingBack = false;
+  render();
+});
+
+deleteBtn.addEventListener('click', () => {
+  if (!cards.length) return;
+  if (!confirm('Delete this card?')) return;
+  cards.splice(i, 1);
+  if (cards.length === 0) {
+    i = 0;
+  } else {
+    i = Math.max(0, i - 1);
+  }
   save();
   showingBack = false;
   render();
